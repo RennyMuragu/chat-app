@@ -20,13 +20,13 @@ This application currently holds the following functionality:
 * Can assign an email address to itself
 
 ## Git Repository Layout
-The root directory of the repository contains the `README.md` file and the files necessary for Node.js. All of the Node.js logic is contained in a single file called `index.js`. The root directory also contains a sub-directory called `chat-app` which contains all the files necessary for Angular.  
+The root directory of the repository contains the `README.md` file and the files necessary for Node.js. All of the Node.js logic is contained in a single file called `server.js`. The root directory also contains a sub-directory called `chat-app` which contains all the files necessary for Angular.  
   
 The `chat-app` directory contains all the auto-generated files. The project's files are contained inside the `src/app` sub-directory. In here, there are four directories, each containing its respective Angular Component. It also contains TypeScript files for Angular services.  
   
 The approach of using Git in this project was to commit changes at any time a new functionality was added. An example would be a task to add functionality for a user. The task would be broken down into sub-tasks and when a sub-task has been implemented, a commit would be added to Git.  
 
-Ensure that the root directory of the Git repository contains an `images` directory. This directory is where the uploaded images are saved and statically served back to the user. 
+The root directory of the Git repository contains an `images` directory. This directory is where the uploaded images are saved and statically served back to the user. 
   
 #### Login
 The Login component allows a user to log in. Any user can type any username and log in. User data will persist after they log out. If a username does not exist in the system, the server will seamlessly create the user in the background. 
@@ -58,7 +58,7 @@ The users service contains the requests for all dashboard, groups and channel da
 * `npm install express`
 * `npm install socket.io`
 * `npm install body-parser`
-* `npm install @types/socket.io-client` - SocketIO for client
+* `npm install @types/socket.io-client'
 * `npm install formidable`
 
 
