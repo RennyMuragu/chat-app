@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   emailField:string = '';
   isGroupAdmin = false;
   isSuperAdmin = false;
+  isGroupAssis = false;
 
   // list of groups and channels
   groups = [];
@@ -127,6 +128,7 @@ export class DashboardComponent implements OnInit {
         this.groups = this.userData.groups
         this.isGroupAdmin = this.userData.groupAdmin;
         this.isSuperAdmin = this.userData.superAdmin;
+        this.isGroupAssis = this.userData.groupAssis;
 
         this.getGroups(); // get the groups if this user is admin
         this.getDataAllUsers();
@@ -163,7 +165,7 @@ export class DashboardComponent implements OnInit {
    * @param group The group object
    */
   viewGroup(group) {
-    if(this.isGroupAdmin || this.isSuperAdmin) {
+    if(this.isGroupAdmin || this.isSuperAdmin || this.isGroupAssis) {
       console.log(`Viewing group ${group}`);
       localStorage.setItem('currentGroup', group);
       this.router.navigateByUrl('/group');
@@ -206,7 +208,7 @@ export class DashboardComponent implements OnInit {
 
   // get all groups and their data
   getGroups() {
-    if(this.isSuperAdmin || this.isGroupAdmin) {
+    if(this.isSuperAdmin || this.isGroupAdmin || this.isGroupAssis) {
       console.log('Admin fetching all groups');
       this.usersService.getGroups().subscribe(
         data => {
@@ -319,6 +321,38 @@ export class DashboardComponent implements OnInit {
     this.usersService.makeUserGroupAdmin(this.usernameMakeAdmin).subscribe(
       data => {
         console.log('Received new data for making user an admin');
+      },
+      err => {
+        console.error;
+      },
+      () => {
+        console.log('Completed making user request');
+      }
+    );
+  }
+
+// make a user a group assis
+  userMakeGroupAssis() {
+    if(this.usernameMakeAdmin === '') {
+      alert('Username cannot be blank');
+      return;
+    }
+    if(!this.listOfUsers.includes(this.usernameMakeAdmin)) {
+      alert(`User ${this.usernameMakeAdmin} does not exist`);
+      return;
+    }
+    for(let user of this.allUsers) {
+      if(user.username === this.usernameMakeAdmin) {
+        if(user.groupAssis) {
+          alert('This user is already a group admin');
+          return;
+        }
+      }
+    }
+    console.log(`Making user ${this.usernameMakeAdmin} group assis`);
+    this.usersService.makeUserGroupAssis(this.usernameMakeAdmin).subscribe(
+      data => {
+        console.log('Received new data for making user a group assis');
       },
       err => {
         console.error;
