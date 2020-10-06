@@ -142,6 +142,7 @@ class UserDataTemplate {
         this.email = "";
         this.superAdmin = false;
         this.groupAdmin = false;
+        this.groupAssis = false;
         this.profileImage = "images/default/profile.gif";
         this.groups = [
             {
@@ -748,6 +749,28 @@ app.post('/api/makeUserSuperAdmin', (req, res) => {
     });
 });
 
+
+// make a user a group assis
+app.post('/api/makeUserGroupAssis', (req, res) => {
+    console.log('POST request at /api/makeUserGroupAssis');
+    const username = req.body.username;
+    console.log(username);
+    retrieveUsers((users) => {
+
+        for(let user of users) {
+            if(user.username === username) {
+                user.groupAssis = true;
+            }
+        }
+        writeUsers(users, () => {
+            setTimeout(() => {
+                res.send(users);
+            }, 100);
+        });
+    });
+});
+
+
 app.post('/api/user/validate', (req, res) => {
     console.log("POST request at /api/user/validate");
     let username = req.body.username;
@@ -791,6 +814,7 @@ function createUser(username, password, email) {
             "email": email,
             "superAdmin": false,
             "groupAdmin": false,
+            "groupAssis": false,
             "profileImage": "images/default/profile.gif",
             "groups": [
                 {
@@ -830,6 +854,7 @@ function createSuperUser() {
             "email": "super@admin.com",
             "superAdmin": true,
             "groupAdmin": true,
+            "groupAssis": true,
             "profileImage": "images/default/profile.gif",
             "groups": [
                 {
