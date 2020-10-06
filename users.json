@@ -7,7 +7,7 @@
   "email": "",
   "superAdmin": true,
   "groupAdmin": true,
-  "profileImage": "images/angel avatar.png",
+  "profileImage": "images/default/profile.gif",
   "groups": [
     {
       "name": "newbies",
