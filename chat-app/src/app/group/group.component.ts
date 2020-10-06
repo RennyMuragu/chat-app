@@ -17,6 +17,7 @@ export class GroupComponent implements OnInit {
   channels; // list of channels for users with no admin roles
   isGroupAdmin = false;
   isSuperAdmin = false;
+  isGroupAssis = false;
 
   // bind for new channel name
   createChannelName:string = '';
@@ -50,9 +51,11 @@ export class GroupComponent implements OnInit {
         console.log('Setting user data');
         this.isGroupAdmin = this.userData.groupAdmin;
         this.isSuperAdmin = this.userData.superAdmin;
+        this.isGroupAssis = this.userData.groupAssis;
         this.testSuperAdmin = this.userData.superAdmin;
         console.log(data);
         console.log(`\tThis user is a group admin: ${this.isGroupAdmin}`);
+        console.log(`\tThis user is a group assis: ${this.isGroupAssis}`);
         console.log(`\tThis user is a super admin: ${this.isSuperAdmin}`);
          // update channels list
         this.userData.groups.forEach(group => {
