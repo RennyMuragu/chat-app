@@ -7,6 +7,7 @@
   "email": "",
   "superAdmin": true,
   "groupAdmin": true,
+  "groupAssis": false,
   "profileImage": "images/default/profile.gif",
   "groups": [
     {
@@ -28,13 +29,48 @@
   ]
 },{
   "_id": {
-    "$oid": "5f7c6f725312ee0f5c2e1100"
+    "$oid": "5f7cddf7fb63dc28fc4e8c86"
   },
-  "username": "Lex",
+  "username": "Lexy",
   "password": "1234",
-  "email": "lex@mail.com",
+  "email": "aaaa",
   "superAdmin": false,
   "groupAdmin": false,
+  "groupAssis": true,
+  "profileImage": "images/default/profile.gif",
+  "groups": [
+    {
+      "name": "newbies",
+      "channels": [
+        "general",
+        "help"
+      ]
+    },
+    {
+      "name": "general",
+      "channels": [
+        "general",
+        "chitchat",
+        "topic of the day"
+      ]
+    },
+    {
+      "name": "Utopia",
+      "channels": [
+        "general"
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5f7cde03fb63dc28fc4e8c87"
+  },
+  "username": "Yemen",
+  "password": "1234",
+  "email": "aaaa",
+  "superAdmin": true,
+  "groupAdmin": true,
+  "groupAssis": false,
   "profileImage": "images/default/profile.gif",
   "groups": [
     {
@@ -55,13 +91,14 @@
   ]
 },{
   "_id": {
-    "$oid": "5f7c6f915312ee0f5c2e1101"
+    "$oid": "5f7cde0cfb63dc28fc4e8c88"
   },
-  "username": "Mary",
+  "username": "Cely",
   "password": "1234",
-  "email": "mary@mail.com",
+  "email": "aaaa",
   "superAdmin": false,
   "groupAdmin": true,
+  "groupAssis": false,
   "profileImage": "images/default/profile.gif",
   "groups": [
     {
@@ -77,6 +114,12 @@
         "general",
         "chitchat",
         "topic of the day"
+      ]
+    },
+    {
+      "name": "Utopia",
+      "channels": [
+        "general"
       ]
     }
   ]
