@@ -13,7 +13,7 @@
             
             
         <div class="box">
-            <div *ngIf="isGroupAdmin">
+            <div *ngIf="isGroupAdmin || isGroupAssis">
                 <input class="" type="text" placeholder="username" [(ngModel)]='newUsername' id='newUsername' name='newUsername'>
                 <button (click)="addUserToChannel()">Add new user</button>
             </div>
@@ -21,12 +21,12 @@
         
         <div class="box">
             <h2 class="title is-3">Users in channel:</h2>
-            <ul *ngIf="listOfUsers && (!isSuperAdmin && !isGroupAdmin)">
+            <ul *ngIf="listOfUsers && (!isSuperAdmin && !isGroupAdmin && !isGroupAssis)">
                 <li *ngFor="let user of listOfUsers">
                     User: {{user}}
                 </li>
             </ul>
-            <ul *ngIf="listOfUsers && (isGroupAdmin)">
+            <ul *ngIf="listOfUsers && (isGroupAdmin || isGroupAssis)">
                 <li *ngFor="let user of listOfUsers">
                     User: {{user}} <button (click)="removeUser(user)">Remove user</button>
                 </li>
@@ -77,6 +77,13 @@
                             <input type="file" class="form-control" (change)="uploadSelected($event)" name="uploadFile" id="uploadFile"/>
                             <button (click)="upload()">Upload</button>
                         </div>
+                        <input
+                            action="action"
+                            onclick="window.history.go(-1); return false;"
+                            type="submit"
+                            value="Leave Chat"
+                            style= "float: right;"
+                        />
                     </div>
                 </div>
             </div>
