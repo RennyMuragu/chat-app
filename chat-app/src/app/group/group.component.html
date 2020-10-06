@@ -10,7 +10,7 @@
 
 <div class="container">
     <div class="notification">
-        <div *ngIf="isGroupAdmin || isSuperAdmin" class="container">
+        <div *ngIf="isGroupAdmin || isSuperAdmin || isGroupAssis" class="container">
                 <div class="notification">
                     <form (submit)="createChannel($event)">
                     <div class="field has-addons has-addons-centered">
@@ -28,12 +28,12 @@
                 
             <div class="box">
                 <h2 class="title">Channels:</h2>
-                <ul *ngIf="channels && (!isSuperAdmin && !isGroupAdmin)">
+                <ul *ngIf="channels && (!isSuperAdmin && !isGroupAdmin && !isGroupAssis)">
                     <li *ngFor="let channel of channels">
                         Channel: {{channel}} <button (click)="viewChannel(channel)">View channel</button>
                     </li>
                 </ul>
-                <ul *ngIf="allChannels && (isSuperAdmin || isGroupAdmin)">
+                <ul *ngIf="allChannels && (isSuperAdmin || isGroupAdmin || isGroupAssis)">
                     <li *ngFor="let channel of allChannels">
                         Channel: {{channel}} <button (click)="viewChannel(channel)">View channel</button> <button (click)="removeChannel(channel)">Remove channel</button>
                     </li>
@@ -42,17 +42,17 @@
             
             <div class="box">
                 <h2 class="title">Users in group:</h2>
-                <div *ngIf="isGroupAdmin">
+                <div *ngIf="isGroupAdmin || isGroupAssis">
                 <input class="" type="text" placeholder="username" [(ngModel)]='newUsername' id='newUsername' name='newUsername'>
                 <button (click)="addUserToGroup()">Add new user</button>
                 </div>
                 
-                <ul *ngIf="allUsers && (!isSuperAdmin && !isGroupAdmin)">
+                <ul *ngIf="allUsers && (!isSuperAdmin && !isGroupAdmin && !isGroupAssis)">
                     <li *ngFor="let user of allUsers">
                         User: {{user}}
                     </li>
                 </ul>
-                <ul *ngIf="allUsers && (isGroupAdmin)">
+                <ul *ngIf="allUsers && (isGroupAdmin || isGroupAssis)">
                     <li *ngFor="let user of allUsers">
                         User: {{user}} <button (click)="removeUser(user)">Remove user</button>
                     </li>
