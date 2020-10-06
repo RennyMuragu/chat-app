@@ -21,6 +21,7 @@ export class ChannelComponent implements OnInit {
   userData;
   isGroupAdmin = false;
   isSuperAdmin = false;
+  isGroupAssis = false;
 
   // data on all users
   allUsers;
@@ -83,8 +84,10 @@ export class ChannelComponent implements OnInit {
         console.log('Setting user data');
         this.isGroupAdmin = this.userData.groupAdmin;
         this.isSuperAdmin = this.userData.superAdmin;
+        this.isGroupAssis = this.userData.groupAssis;
         console.log(`\tThis user is a group admin: ${this.isGroupAdmin}`);
         console.log(`\tThis user is a super admin: ${this.isSuperAdmin}`);
+        console.log(`\tThis user is a group assis: ${this.isGroupAssis}`);
         this.getDataAllUsers();
       },
       err => {
@@ -179,6 +182,10 @@ export class ChannelComponent implements OnInit {
           alert(`Cannot remove admin user ${username}`);
           return;
         }
+        if(user.groupAssis) {
+          alert(`Cannot remove assis ${username}`);
+          return;
+        }
       }
     }
     if(this.channelName === 'general') {
@@ -239,6 +246,7 @@ export class ChannelComponent implements OnInit {
       }
     );
   }
-
-
+  
 }
+
+
