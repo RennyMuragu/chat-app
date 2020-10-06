@@ -10,8 +10,10 @@
 <div class="container">
   <div class="notification">
       <h2 class="subtitle is-3" *ngIf="isSuperAdmin && isGroupAdmin">Welcome {{username}}, you are a super admin</h2>
-      <h2 class="subtitle is-3" *ngIf="!isGroupAdmin">Welcome {{username}}</h2>
+      <h2 class="subtitle is-3" *ngIf="isGroupAssis && !isSuperAdmin && !isGroupAdmin">Welcome {{username}}, you are a group assistant</h2>
+      <h2 class="subtitle is-3" *ngIf="!isGroupAdmin && !isGroupAssis">Welcome {{username}}</h2>
       <h2 class="subtitle is-3" *ngIf="isGroupAdmin && !isSuperAdmin">Welcome {{username}}, you are a group admin</h2>
+
       
 
       
@@ -53,7 +55,7 @@
       </div>
       
       <div class="box">
-          <div *ngIf="isGroupAdmin || isSuperAdmin" class="container">
+          <div *ngIf="isGroupAdmin || isSuperAdmin || isGroupAssis" class="container">
             <form (submit)="createGroup($event)">
               <div class="field has-addons has-addons-centered">
                   <label class="label is-large">New group name:</label>
@@ -72,14 +74,14 @@
 
       <div class="box">
           <h2 class="title is-3">Your groups:</h2>
-          <ul *ngIf="groups && (!isGroupAdmin && !isSuperAdmin)">
+          <ul *ngIf="groups && (!isGroupAdmin && !isSuperAdmin && !isGroupAssis)">
               <li *ngFor="let group of groups">
                   Group: {{group.name}} <button (click)="viewGroup(group)">View channels</button>
               </li>
           </ul>
           
           <!-- <h2 *ngIf="isGroupAdmin || isSuperAdmin" class="title is-3">Admin panel for groups:</h2> -->
-          <ul *ngIf="allGroups && (isGroupAdmin || isSuperAdmin)">
+          <ul *ngIf="allGroups && (isGroupAdmin || isSuperAdmin || isGroupAssis)">
               <li *ngFor="let group of allGroups">
                   Group: {{group}} <button (click)="viewGroup(group)">View channels</button> <button (click)="removeGroup(group)">Remove group</button>
               </li>
