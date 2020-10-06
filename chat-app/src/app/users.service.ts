@@ -129,6 +129,14 @@ export class UsersService {
     return this.http.post(backendURL+'api/makeUserGroupAdmin', JSON.stringify(body), this.genHeadersJSON());
   }
 
+   // make user a group assis
+  makeUserGroupAssis(username:string) {
+    let body = {
+      "username": username
+    }
+    return this.http.post(backendURL+'api/makeUserGroupAssis', JSON.stringify(body), this.genHeadersJSON());
+  }
+
   // make user a super admin
   makeUserSuperAdmin(username:string) {
     let body = {
