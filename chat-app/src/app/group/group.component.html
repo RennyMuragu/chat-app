@@ -42,9 +42,9 @@
             
             <div class="box">
                 <h2 class="title">Users in group:</h2>
-                <div *ngIf="isGroupAdmin || isGroupAssis">
+                <div *ngIf="isGroupAdmin || isGroupAssis || isSuperAdmin">
                 <input class="" type="text" placeholder="username" [(ngModel)]='newUsername' id='newUsername' name='newUsername'>
-                <button (click)="addUserToGroup()">Add new user</button>
+                <button (click)="addUserToGroup()" onClick="document.location.reload(true)">Add new user</button>
                 </div>
                 
                 <ul *ngIf="allUsers && (!isSuperAdmin && !isGroupAdmin && !isGroupAssis)">
@@ -52,9 +52,9 @@
                         User: {{user}}
                     </li>
                 </ul>
-                <ul *ngIf="allUsers && (isGroupAdmin || isGroupAssis)">
+                <ul *ngIf="allUsers && (isGroupAdmin || isGroupAssis || isSuperAdmin)">
                     <li *ngFor="let user of allUsers">
-                        User: {{user}} <button (click)="removeUser(user)">Remove user</button>
+                        User: {{user}} <button (click)="removeUser(user)" onClick="document.location.reload(true)">Remove user</button>
                     </li>
                 </ul>
             </div>
