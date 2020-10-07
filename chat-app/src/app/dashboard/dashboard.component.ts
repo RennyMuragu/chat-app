@@ -311,7 +311,7 @@ export class DashboardComponent implements OnInit {
     }
     for(let user of this.allUsers) {
       if(user.username === this.usernameMakeAdmin) {
-        if(user.groupAdmin) {
+        if(user.groupAdmin && !user.superAdmin) {
           alert('This user is already a group admin');
           return;
         }
