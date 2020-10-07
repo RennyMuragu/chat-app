@@ -155,9 +155,9 @@ export class GroupComponent implements OnInit {
 
   // get all channels in the group
   getChannels() {
-    // console.log(`Group admin: ${this.isGroupAdmin} Super admin: ${this.isSuperAdmin}`);
-    if(this.isGroupAdmin || this.isSuperAdmin) {
-      console.log('Admin fetching all channels');
+    // console.log(`Group admin: ${this.isGroupAdmin} Group assis: ${this.isGroupAssis} Super admin: ${this.isSuperAdmin}`);
+    if(this.isGroupAdmin || this.isSuperAdmin || this.isGroupAssis) {
+      console.log('Fetching all channels');
       this.usersService.getChannels(this.groupName).subscribe(
         data => {
           console.log('Received data for all channels');
@@ -168,7 +168,7 @@ export class GroupComponent implements OnInit {
           console.error;
         },
         () => {
-          console.log('Admin has finished fetching all channels');
+          console.log('Finished fetching all channels');
         }
       );
     }
@@ -194,7 +194,7 @@ export class GroupComponent implements OnInit {
 
   // get all the data on users in the group
   getDataAllUsers() {
-    if(!this.isGroupAdmin) return;
+    if(!this.isGroupAdmin || !this.isGroupAssis) return;
     console.log('Getting all user data from server');
     this.usersService.getDataAllUsers().subscribe(
       data => {
